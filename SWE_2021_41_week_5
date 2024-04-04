@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Use find to locate files in the "files" directory
+find ./files -type f | while read -r input; do
+    # Extract the file name without extension
+    filename=$(basename "$input")
+    filename="${filename%.*}"
+
+
+    # Get the first letter of the file name (case-insensitive)
+    first_letter=${filename,}
+    first="${first_letter:0:1}"
+
+    # Create the corresponding directory if it doesn't exist
+    # mkdir -p "$first_letter"
+
+    # Move the file to the corresponding directory
+    mv "$input" "$first/"
+done
